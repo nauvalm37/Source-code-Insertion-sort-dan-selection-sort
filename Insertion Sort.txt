@@ -1,0 +1,41 @@
+int[] values;
+
+int i = 1;
+void setup() {
+  size(700, 400);
+  values = new int[width];
+  for (int i = 0; i < values.length; i++){
+    values[i] = int(random(height));
+    print(values[i] + ", ");
+  }
+}
+void draw() {
+  background(0);
+  fill(0,225,0);
+ 
+  textSize(20);
+  text(i,20,20);
+  if(i < values.length) {
+    int key = values[i];
+    int j = i -1;
+    
+    while(j >= 0 && values[j] > key) {
+    values[j+1] = values[j];
+      j = j -1;
+    }
+   values[j + 1] = key;
+  } else {
+    
+    noLoop();
+    print("finish");
+  }
+ 
+  i++;
+  
+   for (int i = 0; i < values.length; i++){
+  
+    stroke(255);
+   
+    line(i, height, i, height - values[i]);
+  }  
+}

@@ -1,0 +1,45 @@
+int numberOfNumbers = 100;
+float deltaX = 1;
+int [] numbers = new int [numberOfNumbers];
+int step =0;
+
+void setup(){
+size (600,400);
+for(int i =0; i<numbers.length; i++){
+  numbers[i] = int(random(height));
+  }
+  frameRate(10);
+}
+
+void draw() {
+  makeRectangles();
+  if(step<numberOfNumbers){
+  selectionSortStep();
+  }
+}
+
+void selectionSortStep(){
+int smallSpot = step;
+for(int j =step; j<numbers.length; j++){
+  if(numbers[smallSpot]>numbers[j]){
+    smallSpot =j;
+    }
+  }
+  int temp = numbers[smallSpot];
+  numbers[smallSpot] = numbers[step];
+  numbers[step] = temp;
+  step++;
+}
+
+void makeRectangles(){
+background(240);
+deltaX = width/numberOfNumbers ;
+for(int i =0; i<numbers.length; i++){
+  if(i<=step){
+    fill(0,255,0);
+  } else{
+  fill(255);
+  }
+  rect(i*deltaX, height - numbers[i], deltaX,numbers[i]);
+  }
+}
